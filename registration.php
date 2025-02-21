@@ -2,18 +2,22 @@
 include 'temp/head.php';
 include 'temp/database.php';
 include 'temp/nav.php';
+$message = '';
 if (!empty($_POST)) {
     $login = $_POST['login'];
     $password = $_POST['password'];
     $password_repeat = $_POST['password_repeat'];
     $email = $_POST['email'];
     $fio = $_POST['fio'];
-    if()
-    $sql = "INSERT INTO users(login, password, email, fio) VALUES ('$login','$password','$email','$fio')";
+    if($password == $password_repeat){
+      $sql = "INSERT INTO users(login, password, email, fio, id_role) VALUES ('$login','$password','$email','$fio', 4)";
     var_dump($sql);
     $result=$mysqli->query($sql);
-    var_dump($result);
     header("Location: login.php");
+    }
+    else{
+      $message = 'Пароли не совпадают';
+    }
 }
 ?>
 <div class="container">
@@ -44,8 +48,10 @@ if (!empty($_POST)) {
     <label for="email" class="form-label">Адрес электронной почты</label>
     <input type="email" size="32" minlength="3" maxlength="64" class="form-control" name="email" required>
   </div>
-  <button type="submit" class="btn btn-primary">Отправить</button>
-</form>
+  <button type="submit" class="btn btn-primary">Зарегистрироваться</button>
+</form><br>
+<p id="result"></p>
+<p><?php echo $message ?></p>
         </div>
         <div class="col-1"></div>
     </div>
