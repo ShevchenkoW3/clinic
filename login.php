@@ -14,14 +14,14 @@ if (!empty($_POST)) {
         $userdata = $result->fetch_assoc();
         session_start();
         $_SESSION['id_user'] = $userdata['id_user'];
-        $_SESSION['role'] = $userdata['role'];
-        if($userdata['role'] == 'Клиент'){
+        $_SESSION['id_role'] = $userdata['id_role'];
+        if($userdata['id_role'] == 2){
             var_dump($userdata);
-        header('location: lkclient.php');
+        header('location: registrator.php');
     }
-    elseif($userdata['role'] == 'Администратор'){
+    elseif($userdata['id_role'] == 5){
             var_dump($userdata);
-        header('location: lkadmin.php');
+        header('location: specialist.php');
     }
     else{
         $message ="Неверный логин или пароль";

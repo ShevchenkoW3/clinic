@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Хост: 127.0.0.1:3306
--- Время создания: Фев 21 2025 г., 09:34
+-- Время создания: Фев 22 2025 г., 19:34
 -- Версия сервера: 5.7.39
 -- Версия PHP: 8.0.22
 
@@ -37,7 +37,6 @@ CREATE TABLE `role` (
 --
 
 INSERT INTO `role` (`id_role`, `role`) VALUES
-(1, 'Гость'),
 (2, 'Регистратор'),
 (3, 'Врач'),
 (4, 'Пациент'),
@@ -80,6 +79,15 @@ CREATE TABLE `users` (
   `id_role` int(11) NOT NULL DEFAULT '4'
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
 
+--
+-- Дамп данных таблицы `users`
+--
+
+INSERT INTO `users` (`id_user`, `fio`, `email`, `login`, `password`, `id_role`) VALUES
+(1, 'Шевченко Данила Александрович', 'registrator@yandex.ru', 'registrator', 'registrator', 2),
+(2, 'Краснов Андрей Глебович', 'specialist@yandex.ru', 'specialist', 'specialist', 5),
+(3, 'Иванов Иван Иванович', 'pacient1@yandex.ru', 'pacient1', 'pacient1', 4);
+
 -- --------------------------------------------------------
 
 --
@@ -115,7 +123,7 @@ INSERT INTO `usluga` (`id_usluga`, `name_usl`, `price`, `img`) VALUES
 CREATE TABLE `vrach` (
   `id_vrach` int(11) NOT NULL,
   `id_role` int(11) NOT NULL,
-  `fio` varchar(50) COLLATE utf8mb4_unicode_ci NOT NULL,
+  `fio_vrach` varchar(50) COLLATE utf8mb4_unicode_ci NOT NULL,
   `img` varchar(20) COLLATE utf8mb4_unicode_ci NOT NULL,
   `id_spec` int(11) NOT NULL,
   `id_usluga` int(11) NOT NULL
@@ -125,7 +133,7 @@ CREATE TABLE `vrach` (
 -- Дамп данных таблицы `vrach`
 --
 
-INSERT INTO `vrach` (`id_vrach`, `id_role`, `fio`, `img`, `id_spec`, `id_usluga`) VALUES
+INSERT INTO `vrach` (`id_vrach`, `id_role`, `fio_vrach`, `img`, `id_spec`, `id_usluga`) VALUES
 (1, 3, 'Лебедева Ирина Григорьевна', '27.jpg', 3, 2),
 (2, 3, 'Кострова Анна Васильевна', '28.jpg', 2, 4),
 (3, 3, 'Сидоров Петр Николаевич', '26.png', 4, 6),
@@ -142,11 +150,10 @@ CREATE TABLE `zapis` (
   `id_zapis` int(11) NOT NULL,
   `id_vrach` int(11) NOT NULL,
   `id_user` int(11) NOT NULL,
-  `date_zapis` date NOT NULL,
-  `time_zapis` time NOT NULL,
-  `status` varchar(20) COLLATE utf8mb4_unicode_ci NOT NULL,
-  `otziv` varchar(100) COLLATE utf8mb4_unicode_ci NOT NULL,
-  `otvet` varchar(100) COLLATE utf8mb4_unicode_ci NOT NULL
+  `date_zapis` datetime DEFAULT NULL,
+  `status` int(11) NOT NULL DEFAULT '0',
+  `otziv` varchar(100) COLLATE utf8mb4_unicode_ci DEFAULT NULL,
+  `otvet` varchar(100) COLLATE utf8mb4_unicode_ci DEFAULT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
 
 --
@@ -215,7 +222,7 @@ ALTER TABLE `spec`
 -- AUTO_INCREMENT для таблицы `users`
 --
 ALTER TABLE `users`
-  MODIFY `id_user` int(11) NOT NULL AUTO_INCREMENT;
+  MODIFY `id_user` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=4;
 
 --
 -- AUTO_INCREMENT для таблицы `usluga`
@@ -243,22 +250,22 @@ ALTER TABLE `zapis`
 -- Ограничения внешнего ключа таблицы `users`
 --
 ALTER TABLE `users`
-  ADD CONSTRAINT `users_ibfk_1` FOREIGN KEY (`id_role`) REFERENCES `role` (`id_role`);
+  ADD CONSTRAINT `users_ibfk_1` FOREIGN KEY (`id_role`) REFERENCES `role` (`id_role`) ON DELETE CASCADE ON UPDATE CASCADE;
 
 --
 -- Ограничения внешнего ключа таблицы `vrach`
 --
 ALTER TABLE `vrach`
-  ADD CONSTRAINT `vrach_ibfk_1` FOREIGN KEY (`id_spec`) REFERENCES `spec` (`id_spec`),
-  ADD CONSTRAINT `vrach_ibfk_2` FOREIGN KEY (`id_usluga`) REFERENCES `usluga` (`id_usluga`),
-  ADD CONSTRAINT `vrach_ibfk_3` FOREIGN KEY (`id_role`) REFERENCES `role` (`id_role`);
+  ADD CONSTRAINT `vrach_ibfk_1` FOREIGN KEY (`id_spec`) REFERENCES `spec` (`id_spec`) ON DELETE CASCADE ON UPDATE CASCADE,
+  ADD CONSTRAINT `vrach_ibfk_2` FOREIGN KEY (`id_usluga`) REFERENCES `usluga` (`id_usluga`) ON DELETE CASCADE ON UPDATE CASCADE,
+  ADD CONSTRAINT `vrach_ibfk_3` FOREIGN KEY (`id_role`) REFERENCES `role` (`id_role`) ON DELETE CASCADE ON UPDATE CASCADE;
 
 --
 -- Ограничения внешнего ключа таблицы `zapis`
 --
 ALTER TABLE `zapis`
-  ADD CONSTRAINT `zapis_ibfk_1` FOREIGN KEY (`id_user`) REFERENCES `users` (`id_user`),
-  ADD CONSTRAINT `zapis_ibfk_2` FOREIGN KEY (`id_vrach`) REFERENCES `vrach` (`id_vrach`);
+  ADD CONSTRAINT `zapis_ibfk_1` FOREIGN KEY (`id_user`) REFERENCES `users` (`id_user`) ON DELETE CASCADE ON UPDATE CASCADE,
+  ADD CONSTRAINT `zapis_ibfk_2` FOREIGN KEY (`id_vrach`) REFERENCES `vrach` (`id_vrach`) ON DELETE CASCADE ON UPDATE CASCADE;
 COMMIT;
 
 /*!40101 SET CHARACTER_SET_CLIENT=@OLD_CHARACTER_SET_CLIENT */;

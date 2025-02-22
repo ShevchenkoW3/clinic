@@ -1,6 +1,21 @@
 <?php include 'temp/head.php';
 include 'temp/database.php';
-include 'temp/nav.php';
+session_start();
+if(!empty($_SESSION)){
+$id_role = $_SESSION['id_role'];
+if($id_role == 2){
+    include 'temp/nav_registrator.php';
+}
+elseif($id_role == 5){
+    //Вывод навигации специалиста обработки данных
+}
+else(){
+    //Вывод навигации пациента
+}
+}
+else{
+    include 'temp/nav.php';
+}
 ?>
 <div class="container">
     <div class="row">
