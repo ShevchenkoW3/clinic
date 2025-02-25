@@ -1,0 +1,6 @@
+*{margin: 0; box-sizing: border-box;}
+header, nav, main, section, footer {display: block}
+main{padding-left:5px; padding-right:5px; padding-bottom:10px; font-size:20px;}
+header {margin-bottom: 10px;}
+.navbar {background-color: rgba(51, 215, 221, 0.26);}
+h1{margin-bottom: 200px;color: rgb(2, 36, 63);}
