@@ -3,9 +3,9 @@
 -- https://www.phpmyadmin.net/
 --
 -- Хост: 127.0.0.1:3306
--- Время создания: Фев 25 2025 г., 08:35
+-- Время создания: Фев 25 2025 г., 09:17
 -- Версия сервера: 5.7.39
--- Версия PHP: 8.1.9
+-- Версия PHP: 8.0.22
 
 SET SQL_MODE = "NO_AUTO_VALUE_ON_ZERO";
 START TRANSACTION;
@@ -135,9 +135,9 @@ CREATE TABLE `vrach` (
 INSERT INTO `vrach` (`id_vrach`, `id_role`, `fio_vrach`, `img`, `id_spec`, `id_usluga`) VALUES
 (1, 3, 'Лебедева Ирина Григорьевна', '27.jpg', 3, 2),
 (2, 3, 'Кострова Анна Васильевна', '28.jpg', 2, 4),
-(3, 3, 'Сидоров Петр Николаевич', '26.png', 4, 5),
-(4, 3, 'Друщиц Виталий Андреевич', '29.png', 7, 1),
-(5, 3, 'Метальников Анатолий Сергеевич', '30.png', 3, 3);
+(3, 3, 'Сидоров Петр Николаевич', '26.jpg', 4, 5),
+(4, 3, 'Друщиц Виталий Андреевич', '29.jpg', 7, 1),
+(5, 3, 'Метальников Анатолий Сергеевич', '30.jpeg', 3, 3);
 
 -- --------------------------------------------------------
 
@@ -151,9 +151,9 @@ CREATE TABLE `zapis` (
   `id_user` int(11) NOT NULL,
   `date_zapis` date NOT NULL,
   `time_zapis` time NOT NULL,
-  `status` varchar(20) COLLATE utf8mb4_unicode_ci NOT NULL,
+  `status` varchar(20) COLLATE utf8mb4_unicode_ci NOT NULL DEFAULT 'новый',
   `otziv` varchar(100) COLLATE utf8mb4_unicode_ci DEFAULT NULL,
-  `otvet` varchar(100) COLLATE utf8mb4_unicode_ci NOT NULL
+  `otvet` varchar(100) COLLATE utf8mb4_unicode_ci DEFAULT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
 
 --
