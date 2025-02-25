@@ -3,9 +3,9 @@
 -- https://www.phpmyadmin.net/
 --
 -- Хост: 127.0.0.1:3306
--- Время создания: Фев 24 2025 г., 13:28
+-- Время создания: Фев 25 2025 г., 08:35
 -- Версия сервера: 5.7.39
--- Версия PHP: 8.0.22
+-- Версия PHP: 8.1.9
 
 SET SQL_MODE = "NO_AUTO_VALUE_ON_ZERO";
 START TRANSACTION;
@@ -37,6 +37,7 @@ CREATE TABLE `role` (
 --
 
 INSERT INTO `role` (`id_role`, `role`) VALUES
+(1, 'Гость'),
 (2, 'Регистратор'),
 (3, 'Врач'),
 (4, 'Пациент'),
@@ -84,8 +85,7 @@ CREATE TABLE `users` (
 --
 
 INSERT INTO `users` (`id_user`, `fio`, `email`, `login`, `password`, `id_role`) VALUES
-(1, 'Краснов Андрей Глебович', 'andry.k2005@mail.ru', 'andrew', '123123', 5),
-(2, 'Шевченко Данила Александрович', 'registrator@yandex.ru', 'registrator', 'registrator', 2);
+(1, 'Краснов Андрей Глебович', 'andry.k2005@mail.ru', 'andrew', '123123', 5);
 
 -- --------------------------------------------------------
 
@@ -97,7 +97,7 @@ CREATE TABLE `usluga` (
   `id_usluga` int(11) NOT NULL,
   `name_usl` varchar(50) COLLATE utf8mb4_unicode_ci NOT NULL,
   `price` decimal(10,0) NOT NULL,
-  `img` varchar(150) COLLATE utf8mb4_unicode_ci NOT NULL
+  `img` varchar(20) COLLATE utf8mb4_unicode_ci NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
 
 --
@@ -151,9 +151,9 @@ CREATE TABLE `zapis` (
   `id_user` int(11) NOT NULL,
   `date_zapis` date NOT NULL,
   `time_zapis` time NOT NULL,
-  `status` int(11) NOT NULL DEFAULT '0',
+  `status` varchar(20) COLLATE utf8mb4_unicode_ci NOT NULL,
   `otziv` varchar(100) COLLATE utf8mb4_unicode_ci DEFAULT NULL,
-  `otvet` varchar(100) COLLATE utf8mb4_unicode_ci DEFAULT NULL
+  `otvet` varchar(100) COLLATE utf8mb4_unicode_ci NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
 
 --
@@ -161,12 +161,12 @@ CREATE TABLE `zapis` (
 --
 
 INSERT INTO `zapis` (`id_zapis`, `id_vrach`, `id_user`, `date_zapis`, `time_zapis`, `status`, `otziv`, `otvet`) VALUES
-(1, 2, 1, '2025-02-21', '22:16:13', 1, '123', ''),
-(2, 1, 1, '2025-02-22', '22:16:13', 2, NULL, ''),
-(3, 2, 1, '2025-02-24', '22:16:13', 1, NULL, ''),
-(4, 1, 1, '2025-02-15', '22:16:13', 2, '123123', ''),
-(5, 2, 1, '2025-02-19', '22:16:13', 1, 'hbsdjhdb', ''),
-(6, 1, 1, '2025-02-10', '22:16:13', 2, NULL, '');
+(1, 2, 1, '2025-02-21', '22:16:13', '1', '123', '123123'),
+(2, 1, 1, '2025-02-22', '22:16:13', '2', NULL, ''),
+(3, 2, 1, '2025-02-24', '22:16:13', '1', NULL, ''),
+(4, 1, 1, '2025-02-15', '22:16:13', '2', '123123', 'qweqwe'),
+(5, 2, 1, '2025-02-19', '22:16:13', '1', 'Все очень понравилось!', 'Будьте здоровы!'),
+(6, 1, 1, '2025-02-10', '22:16:13', '2', NULL, '');
 
 --
 -- Индексы сохранённых таблиц
@@ -234,7 +234,7 @@ ALTER TABLE `spec`
 -- AUTO_INCREMENT для таблицы `users`
 --
 ALTER TABLE `users`
-  MODIFY `id_user` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=3;
+  MODIFY `id_user` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=2;
 
 --
 -- AUTO_INCREMENT для таблицы `usluga`
