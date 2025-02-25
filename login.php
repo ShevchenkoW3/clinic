@@ -23,6 +23,10 @@ if (!empty($_POST)) {
             var_dump($userdata);
         header('location: specialist.php');
     }
+    elseif($userdata['id_role'] == 4){
+            var_dump($userdata);
+        header('location: lkpacient.php');
+    }
     else{
         $message ="Неверный логин или пароль";
     }

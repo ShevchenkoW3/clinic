@@ -9,8 +9,8 @@ if($id_role == 2){
 elseif($id_role == 5){
     //Вывод навигации специалиста обработки данных
 }
-else(){
-    //Вывод навигации пациента
+else{
+    include 'temp/nav_pacient.php';
 }
 }
 else{
