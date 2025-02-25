@@ -1,27 +1,11 @@
-<?php include 'temp/head.php';
+<?php 
+include 'temp/head.php';
 include 'temp/database.php';
-session_start();
-if(!empty($_SESSION['id_role'])){
-$id_role = $_SESSION['id_role'];
-if($id_role == 2){
-    include 'temp/nav_registrator.php';
-}
-elseif($id_role == 5){
-    include 'temp/nav_specialist.php';
-}
-else{
-    //Вывод навигации пациента
-}
-}
-else{
-    include 'temp/nav.php';
-}
+include 'temp/nav.php';
 ?>
     <main>
 <div class="container">
-    
-
-<section id="banner">
+    <section id="banner">
     <div id="carouselExampleDark" class="carousel carousel-white slide">
         <div class="carousel-indicators">
             <button type="button" data-bs-target="#carouselExampleWhite" data-bs-slide-to="0" class="active" aria-current="true" aria-label="Slide 1"></button>
@@ -56,9 +40,9 @@ else{
             <span class="visually-hidden">Следующий</span>
         </button>
     </div>
-    <div class="row"><br><br>
+    <div class="row">
 </section>
-<h2 class="name" style="text-align: center">УСЛУГИ ЧАСТНОЙ ПОЛИКЛИНИКИ</h2>
+<h2 style="text-align:center; margin:20px 0px">УСЛУГИ ЧАСТНОЙ ПОЛИКЛИНИКИ</h2>
 <section id="price">
     <div class="row">
         <div class="col-lg-1"></div>
@@ -85,8 +69,8 @@ else{
         </div>
         <div class="col-lg-1"></div>
     </div>
-</section><br><br>
-<h2 class="name" style="text-align: center">О КЛИНИКЕ</h2>
+</section>
+<h2 style="text-align:center; margin:20px 0px">О КЛИНИКЕ</h2>
 <section id="price">
     <div class="row">
         <div class="col-lg-2"></div>
@@ -114,5 +98,5 @@ else{
 </main>
 
     </div>
-</div><br><br>
+</div>
 <?php include 'temp/footer.php';?>
