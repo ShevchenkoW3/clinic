@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Хост: 127.0.0.1:3306
--- Время создания: Фев 25 2025 г., 09:17
+-- Время создания: Фев 21 2025 г., 11:13
 -- Версия сервера: 5.7.39
 -- Версия PHP: 8.0.22
 
@@ -80,13 +80,6 @@ CREATE TABLE `users` (
   `id_role` int(11) NOT NULL DEFAULT '4'
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
 
---
--- Дамп данных таблицы `users`
---
-
-INSERT INTO `users` (`id_user`, `fio`, `email`, `login`, `password`, `id_role`) VALUES
-(1, 'Краснов Андрей Глебович', 'andry.k2005@mail.ru', 'andrew', '123123', 5);
-
 -- --------------------------------------------------------
 
 --
@@ -122,7 +115,7 @@ INSERT INTO `usluga` (`id_usluga`, `name_usl`, `price`, `img`) VALUES
 CREATE TABLE `vrach` (
   `id_vrach` int(11) NOT NULL,
   `id_role` int(11) NOT NULL,
-  `fio_vrach` varchar(50) COLLATE utf8mb4_unicode_ci NOT NULL,
+  `fio` varchar(50) COLLATE utf8mb4_unicode_ci NOT NULL,
   `img` varchar(20) COLLATE utf8mb4_unicode_ci NOT NULL,
   `id_spec` int(11) NOT NULL,
   `id_usluga` int(11) NOT NULL
@@ -132,12 +125,12 @@ CREATE TABLE `vrach` (
 -- Дамп данных таблицы `vrach`
 --
 
-INSERT INTO `vrach` (`id_vrach`, `id_role`, `fio_vrach`, `img`, `id_spec`, `id_usluga`) VALUES
+INSERT INTO `vrach` (`id_vrach`, `id_role`, `fio`, `img`, `id_spec`, `id_usluga`) VALUES
 (1, 3, 'Лебедева Ирина Григорьевна', '27.jpg', 3, 2),
 (2, 3, 'Кострова Анна Васильевна', '28.jpg', 2, 4),
-(3, 3, 'Сидоров Петр Николаевич', '26.jpg', 4, 5),
-(4, 3, 'Друщиц Виталий Андреевич', '29.jpg', 7, 1),
-(5, 3, 'Метальников Анатолий Сергеевич', '30.jpeg', 3, 3);
+(3, 3, 'Сидоров Петр Николаевич', '26.png', 4, 5),
+(4, 3, 'Друщиц Виталий Андреевич', '29.png', 7, 1),
+(5, 3, 'Метальников Анатолий Сергеевич', '30.png', 3, 3);
 
 -- --------------------------------------------------------
 
@@ -151,22 +144,10 @@ CREATE TABLE `zapis` (
   `id_user` int(11) NOT NULL,
   `date_zapis` date NOT NULL,
   `time_zapis` time NOT NULL,
-  `status` varchar(20) COLLATE utf8mb4_unicode_ci NOT NULL DEFAULT 'новый',
-  `otziv` varchar(100) COLLATE utf8mb4_unicode_ci DEFAULT NULL,
-  `otvet` varchar(100) COLLATE utf8mb4_unicode_ci DEFAULT NULL
+  `status` varchar(20) COLLATE utf8mb4_unicode_ci NOT NULL,
+  `otziv` varchar(100) COLLATE utf8mb4_unicode_ci NOT NULL,
+  `otvet` varchar(100) COLLATE utf8mb4_unicode_ci NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
-
---
--- Дамп данных таблицы `zapis`
---
-
-INSERT INTO `zapis` (`id_zapis`, `id_vrach`, `id_user`, `date_zapis`, `time_zapis`, `status`, `otziv`, `otvet`) VALUES
-(1, 2, 1, '2025-02-21', '22:16:13', '1', '123', '123123'),
-(2, 1, 1, '2025-02-22', '22:16:13', '2', NULL, ''),
-(3, 2, 1, '2025-02-24', '22:16:13', '1', NULL, ''),
-(4, 1, 1, '2025-02-15', '22:16:13', '2', '123123', 'qweqwe'),
-(5, 2, 1, '2025-02-19', '22:16:13', '1', 'Все очень понравилось!', 'Будьте здоровы!'),
-(6, 1, 1, '2025-02-10', '22:16:13', '2', NULL, '');
 
 --
 -- Индексы сохранённых таблиц
@@ -234,7 +215,7 @@ ALTER TABLE `spec`
 -- AUTO_INCREMENT для таблицы `users`
 --
 ALTER TABLE `users`
-  MODIFY `id_user` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=2;
+  MODIFY `id_user` int(11) NOT NULL AUTO_INCREMENT;
 
 --
 -- AUTO_INCREMENT для таблицы `usluga`
@@ -252,7 +233,7 @@ ALTER TABLE `vrach`
 -- AUTO_INCREMENT для таблицы `zapis`
 --
 ALTER TABLE `zapis`
-  MODIFY `id_zapis` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=7;
+  MODIFY `id_zapis` int(11) NOT NULL AUTO_INCREMENT;
 
 --
 -- Ограничения внешнего ключа сохраненных таблиц

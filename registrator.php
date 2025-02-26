@@ -26,7 +26,7 @@ $result = $mysqli->query($sql);
                         foreach($result as $row){
                             $id_zapis = $row['id_zapis'];
                             $fio_vrach = $row['fio_vrach'];
-                            $date_zapis = $row['date_zapis']
+                            $date_zapis = $row['date_zapis'];
                             $fio = $row['fio'];
                             $status = $row['status'];
                             echo '
