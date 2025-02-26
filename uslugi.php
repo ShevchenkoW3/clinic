@@ -18,7 +18,6 @@ $result = $mysqli->query($sql);
                 <thead>
                     <tr class="table-primary">
                         <th>№</th>
-                        <th></th>
                         <th>Название услуги</th>
                         <th>Стоимость</th>
                         <th></th>
@@ -35,10 +34,9 @@ $result = $mysqli->query($sql);
                             echo '
                             <tr>
                             <td>'.$id_usluga.'</td>
-                            <td><img class="img" src="img/'.$img.'" alt="" width="102" height="99"></td>
                             <td>'.$name_usl.'</td>
-                            <td>'.$price.'</td>;
-                            <td><a href="edit.php?id_usluga='.$id_usluga.'">Изменить цену</a></td>
+                            <td>'.$price.'</td>
+                            <td><a href="edit.php?id_usluga='.$id_usluga.'">Изменить</a></td>
                             </tr>';
                             }
                         }

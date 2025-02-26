@@ -2,7 +2,7 @@
 include 'temp/head.php';
 include 'temp/nav_registrator.php';
 include 'temp/database.php';
-$sql = "select * from zapis, vrach, users, where zapis.id_user = users.id_user and users.id_role = 4";
+$sql = "select * from zapis, vrach, users where zapis.id_user = users.id_user and zapis.id_vrach = vrach.id_vrach and users.id_user = 4";
 $result = $mysqli->query($sql);
 ?>
 <div class="container">

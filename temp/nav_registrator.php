@@ -10,6 +10,9 @@
     <a class="nav-link" href="uslugi.php">Услуги</a>
   </li>
   <li class="nav-item">
+    <a class="nav-link" href="otchet_registrator.php">Отчет о пациентах</a>
+  </li>
+  <li class="nav-item">
     <a class="nav-link" href="logout.php">Выйти</a>
   </li>
 </ul>
