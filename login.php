@@ -21,12 +21,16 @@ if (!empty($_POST)) {
     }
     elseif($userdata['id_role'] == 5){
             var_dump($userdata);
-        header('location: specialist.php');
+        header('location: datamamager.php');
     }
     elseif($userdata['id_role'] == 4){
             var_dump($userdata);
         header('location: lkpacient.php');
     }
+    elseif($userdata['id_role'] == 3){
+        var_dump($userdata);
+    header('location: kab_vrach.php');
+}
     else{
         $message ="Неверный логин или пароль";
     }
