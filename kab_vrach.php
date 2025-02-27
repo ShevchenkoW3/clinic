@@ -1,7 +1,7 @@
 <?php 
 include 'temp/head.php';
 include 'temp/database.php';
-include 'temp/navvrach.php';
+include 'temp/nav_vrach.php';
 
 if(!empty($_POST)) {
     $but = $_POST['but'];
