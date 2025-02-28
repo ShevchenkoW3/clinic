@@ -4,7 +4,7 @@
     <a class="nav-link" aria-current="page" href="index.php">Главная</a>
   </li>
   <li class="nav-item">
-    <a class="nav-link" href="#">Наши специалисты</a>
+    <a class="nav-link" href="specialist.php">Наши специалисты</a>
   </li>
   <li class="nav-item">
     <a class="nav-link" href="registration.php">Регистрация</a>
