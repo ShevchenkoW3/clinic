@@ -4,7 +4,7 @@
     <a class="nav-link" href="lkpacient.php">Все записи</a>
   </li>
   <li class="nav-item">
-    <a class="nav-link" href="addzapis.php">Запись на прием</a>
+    <a class="nav-link" href="zapis.php">Запись на прием</a>
   </li>
   <li class="nav-item">
     <a class="nav-link" href="logout.php">Выйти</a>

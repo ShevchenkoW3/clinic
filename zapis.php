@@ -45,7 +45,6 @@ include 'temp/nav_pacient.php';
         <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Закрыть"></button>
       </div>
       <div class="modal-body">
-        <form method="POST">
   <div class="mb-3">
     <label for="date_zapis" class="form-label">Выберите дату</label>
     <input type="date" class="form-control" id="date_zapis" name="date_zapis" required>
