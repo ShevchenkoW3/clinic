@@ -1,4 +1,6 @@
 <?php 
+session_start();
+$id_user = $_SESSION['id_user'];
 include 'temp/head.php';
 include 'temp/database.php';
 include 'temp/nav_vrach.php';
@@ -29,9 +31,10 @@ if($d2 !== ''){
 $sql = "SELECT * FROM zapis, vrach, users, usluga 
 WHERE zapis.id_vrach = vrach.id_vrach 
 AND zapis.id_user = users.id_user
-AND vrach.id_usluga = usluga.id_usluga" . $inject_sql;
+AND vrach.id_usluga = usluga.id_usluga AND vrach.id_user = $id_user" . $inject_sql;
 $result = $mysqli->query($sql);
 $zapiss = $result->fetch_all(MYSQLI_ASSOC);
+
 ?>
 <main>
     <div class="container">
