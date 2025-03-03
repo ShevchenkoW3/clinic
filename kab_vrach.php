@@ -1,11 +1,20 @@
 <?php 
+session_start();
+$id_user = $_SESSION['id_user'];
 include 'temp/head.php';
 include 'temp/database.php';
 include 'temp/nav_vrach.php';
 
 if(!empty($_POST)) {
+    $del = $_POST['del'];
+    $sql = "DELETE FROM zapis WHERE id_zapis=('$del')";
+    $result=$mysqli->query($sql);
+    header('location: kab_vrach.php');
+}
+
+if(!empty($_POST)) {
     $but = $_POST['but'];
-    $sql = "UPDATE zapis SET status='Оказано' WHERE id_zapis=('$but')";
+    $sql = "UPDATE zapis SET status='Завершено' WHERE id_zapis=('$but')";
     $result=$mysqli->query($sql);
     header('location: kab_vrach.php');
 }
@@ -22,9 +31,10 @@ if($d2 !== ''){
 $sql = "SELECT * FROM zapis, vrach, users, usluga 
 WHERE zapis.id_vrach = vrach.id_vrach 
 AND zapis.id_user = users.id_user
-AND vrach.id_usluga = usluga.id_usluga" . $inject_sql;
+AND vrach.id_usluga = usluga.id_usluga AND vrach.id_user = $id_user" . $inject_sql;
 $result = $mysqli->query($sql);
 $zapiss = $result->fetch_all(MYSQLI_ASSOC);
+
 ?>
 <main>
     <div class="container">
@@ -54,7 +64,8 @@ $zapiss = $result->fetch_all(MYSQLI_ASSOC);
                         <th>Наименование услуги</th>
                         <th>Дата записи</th>
                         <th>Цена услуги</th>
-                        <th colspan="2">Статус</th>
+                        <th>Статус</th>
+                        <th>Действие</th>
                     </tr>
                     <?php foreach ($zapiss as $zapis) { ?>
                         <tr>
@@ -64,8 +75,12 @@ $zapiss = $result->fetch_all(MYSQLI_ASSOC);
                         <td><?= $zapis['price']?> Руб.</td>
                         <td><?= $zapis['status']?></td>
                        <?php 
-          if($zapis['status'] == 'Новая'){
-            echo'<td><form action="" method="POST"><button type="submit" class="btn btn-primary" name="but" value="'.$zapis['id_zapis'].'">Подтвердить</button></form></td></tr>';
+          if($zapis['status'] == 'Новая запись'){
+            echo'<td><form action="" method="POST"><button type="submit" class="btn btn-primary" name="but" value="'.$zapis['id_zapis'].'">Завершить</button></form></td></tr>';
+            }?>
+            <?php 
+          if($zapis['status'] == 'Завершено'){
+            echo'<td><form action="" method="POST"><button type="submit" class="btn btn-primary" name="del" value="'.$zapis['id_zapis'].'">Удалить</button></form></td></tr>';
             }?>
  <?php }?>
                 </table>
