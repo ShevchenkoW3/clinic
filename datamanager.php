@@ -32,9 +32,10 @@ if($date_from_vrach !== ''){
 if($date_to_vrach !== ''){
     $inject_sql .= " AND date_zapis <= '$date_to_vrach'";
 }
-$sql = "SELECT vrach.fio_vrach, usluga.name_usl, usluga.price, count(zapis.id_zapis) As zapis_count,
- count(zapis.otziv) As otziv_count FROM vrach, usluga, zapis 
+$sql = "SELECT users.fio, usluga.name_usl, usluga.price, count(zapis.id_zapis) As zapis_count,
+ count(zapis.otziv) As otziv_count FROM vrach, usluga, zapis, users
  WHERE vrach.id_usluga = usluga.id_usluga 
+ AND vrach.id_user = users.id_user
  AND vrach.id_vrach = zapis.id_vrach $inject_sql
 GROUP BY zapis.id_vrach;";
 $result = $mysqli->query($sql);
@@ -140,7 +141,7 @@ $vrachi = $result->fetch_all(MYSQLI_ASSOC);
                                 <?php foreach ($vrachi as $vrach) { ?>
 
                                 <tr>
-                                    <td><?= $vrach['fio_vrach']?></td>
+                                    <td><?= $vrach['fio']?></td>
                                     <td><?= $vrach['name_usl']?></td>
                                     <td><?= $vrach['price']?></td>
                                     <td><?= $vrach['zapis_count']?></td>

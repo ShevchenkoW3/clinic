@@ -41,7 +41,7 @@ $result=$mysqli->query($sql);
       $result1=$mysqli->query($sql2);
 >>>>>>> Stashed changes
       $row1 = mysqli_fetch_assoc($result1);
-      if ($row['status'] == 'Новая запись') {
+      if ($row['status'] == 'Новая') {
         echo'
     <tr>
 <<<<<<< Updated upstream
@@ -51,7 +51,7 @@ $result=$mysqli->query($sql);
       <td>'.$row['status'].'</td>
     </tr>';
       }
-      elseif ($row['status'] == 'Решено') {
+      elseif ($row['status'] == 'Оказано') {
         if(empty($row['otziv'])){
         echo'
     <tr>
