@@ -2,7 +2,7 @@
 <?php 
 include 'temp/head.php';
 include 'temp/database.php';
-include 'temp/nav.php';
+include 'temp/nav_specialist.php';
 ?>
 <?php 
 $sql = "SELECT * FROM zapis, vrach, users, usluga WHERE 
@@ -49,7 +49,7 @@ $zapiss = $result->fetch_all(MYSQLI_ASSOC)
                 <td><?= $zapis['otvet']?></td>
                 <td>
                     <?php if (empty($zapis['otvet'])) {?>
-                    <a href="/new_review.php?id_zapis=<?= $zapis['id_zapis'] ?>" class="btn btn-primary">Ответить</a>
+                    <a href="/otvet.php?id_zapis=<?= $zapis['id_zapis'] ?>" class="btn btn-primary">Ответить</a>
                     <?php }?>
                 </td>
                 </tr>
