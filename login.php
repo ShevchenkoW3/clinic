@@ -21,7 +21,11 @@ if (!empty($_POST)) {
     }
     elseif($userdata['id_role'] == 5){
             var_dump($userdata);
+<<<<<<< Updated upstream
         header('location: datamamager.php');
+=======
+        header('location: datamanager.php');
+>>>>>>> Stashed changes
     }
     elseif($userdata['id_role'] == 4){
             var_dump($userdata);
