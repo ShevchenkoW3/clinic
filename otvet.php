@@ -7,8 +7,8 @@ if(!empty($_GET['id_zapis'])){
     if(!empty($_POST)){
         $otvet = $_POST['otvet'];
         $sql = "update zapis set otvet = '$otvet' where id_zapis = '$id_zapis'";
-        var_dump($sql);
         $result = $mysqli->query($sql);
+        header("Location: reviews.php");
     }
 }
 ?>
