@@ -32,7 +32,7 @@ $result=$mysqli->query($sql);
       $sql2 = "SELECT * FROM vrach, users WHERE vrach.id_user = users.id_user and users.id_role = 3";
       $result1=$mysqli->query($sql2);
       $row1 = mysqli_fetch_assoc($result1);
-      if ($row['status'] == 'Новая') {
+      if ($row['status'] == 'Новая запись') {
         echo'
     <tr>
       <td>'.$row1['fio'].'</td>

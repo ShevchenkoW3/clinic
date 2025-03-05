@@ -50,7 +50,6 @@ $otchet = $result->fetch_all(MYSQLI_ASSOC);
                 <thead>
                     <tr class="table-primary">
                         <th>Дата записи</th>
-                        <th>Врач</th>
                         <th>Пациент</th>
                         <th>Статус</th>
                         <th></th>
@@ -62,7 +61,6 @@ $otchet = $result->fetch_all(MYSQLI_ASSOC);
                     echo '
                             <tr>
                             <td>'.$row['date_zapis'].'</td>
-                            <td>'.$row['fio_vrach'].'</td>
                             <td>'.$row['fio'].'</td>
                             <td>'.$row['status'].'</td>';
                             if($row['status'] == 'Новая запись'){
