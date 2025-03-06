@@ -1,4 +1,3 @@
-
 <?php
 include 'temp/head.php';
 include 'temp/database.php';
