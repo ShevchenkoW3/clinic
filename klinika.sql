@@ -3,7 +3,11 @@
 -- https://www.phpmyadmin.net/
 --
 -- Хост: 127.0.0.1:3306
+<<<<<<< Updated upstream
 -- Время создания: Фев 27 2025 г., 13:01
+=======
+-- Время создания: Мар 04 2025 г., 09:43
+>>>>>>> Stashed changes
 -- Версия сервера: 5.7.39
 -- Версия PHP: 8.0.22
 
@@ -88,7 +92,17 @@ INSERT INTO `users` (`id_user`, `fio`, `email`, `login`, `password`, `id_role`) 
 (1, 'Краснов Андрей Глебович', 'andry.k2005@mail.ru', 'andrew', '123123', 5),
 (2, 'Шевченко Данила Александрович', 'shevdan03@yandex.ru', 'registrator', 'registrator', 2),
 (3, 'Петрова Александра Валерьевна', 'vrach@yandex.ru', 'vrach', 'vrach', 3),
+<<<<<<< Updated upstream
 (4, 'Савельев Роман Александрович', 'pacient@yandex.ru', 'pacient', 'pacient', 4);
+=======
+(4, 'Савельев Роман Александрович', 'pacient@yandex.ru', 'pacient', 'pacient', 4),
+(5, 'Кострова Анна Васильевна', 'metal@mail.ru', 'vrach1', 'vrach1', 3),
+(6, 'Сидоров Петр Николаевич', 'metal@mail.ru', 'vrach2', 'vrach2', 3),
+(7, 'Друщиц Виталий Андреевич', 'vitall@mail.ru', 'vrach3', 'vrach3', 3),
+(8, 'Метальников Анатолий Сергеевич', 'metalll@mail.ru', 'vrach4', 'vrach4', 3),
+(9, 'Лебедева Ирина Григорьевна', 'lebed@mail.ru', 'vrach5', 'vrach5', 3),
+(10, 'Носков Александр Николаевич', 'ira1994@mail.ru', 'patient2', 'patient2', 4);
+>>>>>>> Stashed changes
 
 -- --------------------------------------------------------
 
@@ -100,7 +114,7 @@ CREATE TABLE `usluga` (
   `id_usluga` int(11) NOT NULL,
   `name_usl` varchar(50) COLLATE utf8mb4_unicode_ci NOT NULL,
   `price` decimal(10,0) NOT NULL,
-  `img` varchar(20) COLLATE utf8mb4_unicode_ci NOT NULL
+  `img` varchar(20) COLLATE utf8mb4_unicode_ci DEFAULT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
 
 --
@@ -124,8 +138,7 @@ INSERT INTO `usluga` (`id_usluga`, `name_usl`, `price`, `img`) VALUES
 
 CREATE TABLE `vrach` (
   `id_vrach` int(11) NOT NULL,
-  `id_role` int(11) NOT NULL,
-  `fio_vrach` varchar(50) COLLATE utf8mb4_unicode_ci NOT NULL,
+  `id_user` int(11) NOT NULL,
   `img` varchar(20) COLLATE utf8mb4_unicode_ci NOT NULL,
   `id_spec` int(11) NOT NULL,
   `id_usluga` int(11) NOT NULL
@@ -135,12 +148,21 @@ CREATE TABLE `vrach` (
 -- Дамп данных таблицы `vrach`
 --
 
+<<<<<<< Updated upstream
 INSERT INTO `vrach` (`id_vrach`, `id_role`, `fio_vrach`, `img`, `id_spec`, `id_usluga`) VALUES
 (1, 3, 'Лебедева Ирина Григорьевна', '27.jpg', 3, 2),
 (2, 3, 'Кострова Анна Васильевна', '28.jpg', 2, 4),
 (3, 3, 'Сидоров Петр Николаевич', '26.jpg', 4, 5),
 (4, 3, 'Друщиц Виталий Андреевич', '29.jpg', 7, 1),
 (5, 3, 'Метальников Анатолий Сергеевич', '30.jpeg', 3, 3);
+=======
+INSERT INTO `vrach` (`id_vrach`, `id_user`, `img`, `id_spec`, `id_usluga`) VALUES
+(6, 9, '27.jpg', 3, 2),
+(7, 5, '28.jpg', 2, 4),
+(8, 6, '26.jpg', 4, 5),
+(9, 7, '29.jpg', 7, 1),
+(10, 8, '30.jpeg', 4, 3);
+>>>>>>> Stashed changes
 
 -- --------------------------------------------------------
 
@@ -154,7 +176,11 @@ CREATE TABLE `zapis` (
   `id_user` int(11) NOT NULL,
   `date_zapis` date NOT NULL,
   `time_zapis` time NOT NULL,
+<<<<<<< Updated upstream
   `status` varchar(20) COLLATE utf8mb4_unicode_ci NOT NULL DEFAULT 'новый',
+=======
+  `status` varchar(20) COLLATE utf8mb4_unicode_ci NOT NULL DEFAULT 'Новая запись',
+>>>>>>> Stashed changes
   `otziv` varchar(100) COLLATE utf8mb4_unicode_ci DEFAULT NULL,
   `otvet` varchar(100) COLLATE utf8mb4_unicode_ci DEFAULT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
@@ -207,7 +233,7 @@ ALTER TABLE `vrach`
   ADD PRIMARY KEY (`id_vrach`),
   ADD KEY `id_spec` (`id_spec`),
   ADD KEY `id_usluga` (`id_usluga`),
-  ADD KEY `id_role` (`id_role`);
+  ADD KEY `id_role` (`id_user`);
 
 --
 -- Индексы таблицы `zapis`
@@ -237,7 +263,11 @@ ALTER TABLE `spec`
 -- AUTO_INCREMENT для таблицы `users`
 --
 ALTER TABLE `users`
+<<<<<<< Updated upstream
   MODIFY `id_user` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=5;
+=======
+  MODIFY `id_user` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=11;
+>>>>>>> Stashed changes
 
 --
 -- AUTO_INCREMENT для таблицы `usluga`
@@ -249,13 +279,17 @@ ALTER TABLE `usluga`
 -- AUTO_INCREMENT для таблицы `vrach`
 --
 ALTER TABLE `vrach`
-  MODIFY `id_vrach` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=6;
+  MODIFY `id_vrach` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=11;
 
 --
 -- AUTO_INCREMENT для таблицы `zapis`
 --
 ALTER TABLE `zapis`
+<<<<<<< Updated upstream
   MODIFY `id_zapis` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=7;
+=======
+  MODIFY `id_zapis` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=15;
+>>>>>>> Stashed changes
 
 --
 -- Ограничения внешнего ключа сохраненных таблиц
@@ -271,9 +305,15 @@ ALTER TABLE `users`
 -- Ограничения внешнего ключа таблицы `vrach`
 --
 ALTER TABLE `vrach`
+<<<<<<< Updated upstream
   ADD CONSTRAINT `vrach_ibfk_1` FOREIGN KEY (`id_spec`) REFERENCES `spec` (`id_spec`),
   ADD CONSTRAINT `vrach_ibfk_2` FOREIGN KEY (`id_usluga`) REFERENCES `usluga` (`id_usluga`),
   ADD CONSTRAINT `vrach_ibfk_3` FOREIGN KEY (`id_role`) REFERENCES `role` (`id_role`);
+=======
+  ADD CONSTRAINT `vrach_ibfk_1` FOREIGN KEY (`id_user`) REFERENCES `users` (`id_user`),
+  ADD CONSTRAINT `vrach_ibfk_2` FOREIGN KEY (`id_usluga`) REFERENCES `usluga` (`id_usluga`),
+  ADD CONSTRAINT `vrach_ibfk_3` FOREIGN KEY (`id_spec`) REFERENCES `spec` (`id_spec`);
+>>>>>>> Stashed changes
 
 --
 -- Ограничения внешнего ключа таблицы `zapis`

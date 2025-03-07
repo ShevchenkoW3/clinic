@@ -1,4 +1,3 @@
-
 <?php
 include 'temp/head.php';
 include 'temp/database.php';
@@ -26,12 +25,12 @@ include 'temp/nav_pacient.php';
   </thead>
   <tbody>
     <?
-    $sql = "SELECT * FROM usluga, vrach, spec WHERE vrach.id_usluga = usluga.id_usluga AND vrach.id_spec = spec.id_spec";
+    $sql = "SELECT * FROM usluga, vrach, users, spec WHERE vrach.id_usluga = usluga.id_usluga AND vrach.id_spec = spec.id_spec AND vrach.id_user = users.id_user and users.id_role = 3";
     $result=$mysqli->query($sql);
     foreach($result as $row){
         echo'
     <tr>
-      <td>'.$row['fio_vrach'].'</td>
+      <td>'.$row['fio'].'</td>
       <td>'.$row['name_spec'].'</td>
       <td>'.$row['name_usl'].'</td>
       <td>'.$row['price'].' рублей</td>

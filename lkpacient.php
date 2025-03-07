@@ -21,32 +21,39 @@ $result=$mysqli->query($sql);
       <th scope="col">Дата</th>
       <th scope="col">Время</th>
       <th scope="col">Статус</th>
+      <th scope="col">Отзыв</th>
       <th scope="col">Ответ</th>
+      <th></th>
     </tr>
   </thead>
   <tbody>
     <?
     foreach($result as $row){
-      $sqll = "SELECT * FROM vrach WHERE id_vrach = ".$row['id_vrach']."";
-      $result1=$mysqli->query($sqll);
+      $sql2 = "SELECT * FROM vrach, users WHERE vrach.id_user = users.id_user and users.id_role = 3";
+      $result1=$mysqli->query($sql2);
       $row1 = mysqli_fetch_assoc($result1);
       if ($row['status'] == 'Новая запись') {
         echo'
     <tr>
-      <td>'.$row1['fio_vrach'].'</td>
+      <td>'.$row1['fio'].'</td>
       <td>'.$row['date_zapis'].'</td>
       <td>'.$row['time_zapis'].'</td>
       <td>'.$row['status'].'</td>
+      <td></td>
+      <td></td>
+      <td></td>
     </tr>';
       }
       elseif ($row['status'] == 'Завершено') {
         if(empty($row['otziv'])){
         echo'
     <tr>
-      <td>'.$row1['fio_vrach'].'</td>
+      <td>'.$row1['fio'].'</td>
       <td>'.$row['date_zapis'].'</td>
       <td>'.$row['time_zapis'].'</td>
       <td>'.$row['status'].'</td>
+      <td>'.$row['otziv'].'</td>
+      <td>'.$row['otvet'].'</td>
       <td><button type="button" class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#exampleModal">Оставить отзыв</button></td>
     </tr><div class="modal fade" id="exampleModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
   <div class="modal-dialog">
@@ -73,21 +80,26 @@ $result=$mysqli->query($sql);
     elseif(!empty($row['otziv'])){
       echo'
     <tr>
-      <td>'.$row1['fio_vrach'].'</td>
+      <td>'.$row1['fio'].'</td>
       <td>'.$row['date_zapis'].'</td>
       <td>'.$row['time_zapis'].'</td>
       <td>'.$row['status'].'</td>
+      <td>'.$row['otziv'].'</td>
       <td>'.$row['otvet'].'</td>
+      <td></td>
     </tr>';
     }
       }
       else {
         echo'
     <tr>
-      <td>'.$row1['fio_vrach'].'</td>
+      <td>'.$row1['fio'].'</td>
       <td>'.$row['date_zapis'].'</td>
       <td>'.$row['time_zapis'].'</td>
       <td>'.$row['status'].'</td>
+      <td></td>
+      <td></td>
+      <td></td>
     </tr>';
       }
     }?>

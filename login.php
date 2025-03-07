@@ -21,7 +21,7 @@ if (!empty($_POST)) {
     }
     elseif($userdata['id_role'] == 5){
             var_dump($userdata);
-        header('location: datamamager.php');
+        header('location: datamanager.php');
     }
     elseif($userdata['id_role'] == 4){
             var_dump($userdata);

@@ -75,7 +75,7 @@ $zapiss = $result->fetch_all(MYSQLI_ASSOC);
                         <td><?= $zapis['price']?> Руб.</td>
                         <td><?= $zapis['status']?></td>
                        <?php 
-          if($zapis['status'] == 'Новая запись'){
+          if($zapis['status'] == 'Записан'){
             echo'<td><form action="" method="POST"><button type="submit" class="btn btn-primary" name="but" value="'.$zapis['id_zapis'].'">Завершить</button></form></td></tr>';
             }?>
             <?php 

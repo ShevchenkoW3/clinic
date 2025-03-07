@@ -2,7 +2,7 @@
 <?php 
 include 'temp/head.php';
 include 'temp/database.php';
-include 'temp/nav.php';
+include 'temp/nav_specialist.php';
 ?>
 <?php 
 $date_from = $_GET['date_from'] ?? '';
