@@ -12,14 +12,14 @@ include 'temp/nav_specialist.php';
         <div class="col-lg-12">
             <div class="row row-cols-1  row-cols-md-5 g-4">
                 <?php
-                $sql = "SELECT * FROM vrach, spec WHERE vrach.id_spec=spec.id_spec";
+                $sql = "SELECT * FROM vrach, spec, users WHERE vrach.id_spec=spec.id_spec and vrach.id_user = users.id_user and users.id_role = 3";
                 $result = $mysqli->query($sql);
                 foreach ($result as $row)  {
                     echo '<div class="col">
     <div class="card h-100">
       <img src="img/'.$row['img'].'" class="card-img-top" alt="...">
       <div class="card-body">
-        <h5 class="card-title">'.$row['fio_vrach'].'</h5>
+        <h5 class="card-title">'.$row['fio'].'</h5>
         <p class="card-text">'.$row['name_spec'].'</p>
       </div>
     </div>
