@@ -4,10 +4,25 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Частная клиника</title>
-    <link href= "css/bootstrap.min.css" rel="stylesheet" type="text/css"> 
-    <script src="js/bootstrap.min.js"></script> 
     <script src="js/jquery-3.6.0.js"></script>
     <script src="js/login.js"></script>
+    <script src="js/zapis.js"></script>
+    <link href= "css/bootstrap.min.css" rel="stylesheet" type="text/css"> 
+    <script src="js/bootstrap.min.js"></script> <script>
+$(document).ready(function(){
+  $('#myModal').on('show.bs.modal', function (event) {
+// кнопка, которая вызывает модаль
+ var button = $(event.relatedTarget) 
+// получим  data-id_user атрибут
+  var id_vrach = button.data('id_vrach') 
+// получим  data-fio атрибут
+   // Здесь изменяем содержимое модали
+  var modal = $(this);
+ modal.find('.modal-title').text('Записаться к '+id_vrach);
+ modal.find('.modal-body #id_vrach').val(id_vrach);
+})
+});
+</script>
 </head>
 <body>
     <div class="container">
