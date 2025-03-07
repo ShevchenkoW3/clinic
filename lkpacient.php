@@ -4,7 +4,8 @@ include 'temp/database.php';
 include 'temp/nav_pacient.php';
 session_start();
 $id_user = $_SESSION['id_user'];
-$sql = "SELECT * FROM zapis WHERE id_user = '$id_user'";
+$id_role = $_SESSION['id_role'];
+$sql = "SELECT * FROM zapis WHERE zapis.id_user = '$id_user'";
 $result=$mysqli->query($sql);
 ?>
 <div class="container">
@@ -29,13 +30,13 @@ $result=$mysqli->query($sql);
   <tbody>
     <?
     foreach($result as $row){
-      $sql2 = "SELECT * FROM vrach, users WHERE vrach.id_user = users.id_user and users.id_role = 3";
-      $result1=$mysqli->query($sql2);
+      $sql = "SELECT * FROM vrach, users, zapis WHERE zapis.id_vrach = vrach.id_vrach and vrach.id_user = users.id_user and users.id_role = 3";
+      $result1=$mysqli->query($sql);
       $row1 = mysqli_fetch_assoc($result1);
       if ($row['status'] == 'Новая запись') {
         echo'
     <tr>
-      <td>'.$row1['fio'].'</td>
+      <td>'.$row1['fio'].'</td>>
       <td>'.$row['date_zapis'].'</td>
       <td>'.$row['time_zapis'].'</td>
       <td>'.$row['status'].'</td>

@@ -1,7 +1,24 @@
 <?php 
 include 'temp/head.php';
 include 'temp/database.php';
-include 'temp/nav.php';
+session_start();
+if(!empty($_SESSION['id_role'])){
+    if($_SESSION['id_role'] == 2){
+        include 'temp/nav_registrator.php';
+    }
+    elseif($_SESSION['id_role'] == 3){
+        include 'temp/nav_vrach.php';
+    }
+    elseif($_SESSION['id_role'] == 4){
+        include 'temp/nav_pacient.php';
+    }
+    else{
+        include 'temp/nav_specialist.php';
+        }
+    }
+else{
+    include 'temp/nav.php';
+}
 ?>
     <main>
 <div class="container">
