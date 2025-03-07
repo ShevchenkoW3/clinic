@@ -61,7 +61,7 @@ data-id_vrach="'.$row['id_vrach'].'" >Записаться</button></td>
   </div>
 <?php
   echo '
-  <br><input type="text" id="id_vrach" name="id_vrach">'; 
+  <br><input type="hidden" id="id_vrach" name="id_vrach">'; 
   
 //НЕВИДИМОЕ ОКНО ВВОДА, ЧТОБЫ ПЕРЕДАТЬ ID_USER В $_POST
 ?>
