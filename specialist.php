@@ -17,7 +17,7 @@ if(!empty($_SESSION['id_role'])){
         }
     }
 else{
-    include 'temp/nav_specialist.php';
+    include 'temp/nav.php';
 }
 ?>
 <main>
