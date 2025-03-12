@@ -39,7 +39,7 @@ $result=$mysqli->query($sql);
       <td>'.$row['status'].'</td>
     </tr>';
       }
-      elseif ($row['status'] == 'Завершено') {
+      elseif ($row['status'] == 'Записан') {
         if($row['otziv'] == ''){
         echo'
     <tr>
