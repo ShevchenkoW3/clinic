@@ -70,7 +70,7 @@ $result=$mysqli->query($sql);
 </div>
 </form>
   </div>';}
-    elseif(!empty($row['otziv'])){
+    else{
       echo'
     <tr>
       <td>'.$row1['fio'].'</td>
