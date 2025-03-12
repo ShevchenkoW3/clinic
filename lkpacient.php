@@ -40,7 +40,7 @@ $result=$mysqli->query($sql);
     </tr>';
       }
       elseif ($row['status'] == 'Завершено') {
-        if(empty($row['otziv'])){
+        if($row['otziv'] == ''){
         echo'
     <tr>
       <td>'.$row1['fio'].'</td>
