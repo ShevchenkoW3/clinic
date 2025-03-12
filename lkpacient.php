@@ -27,13 +27,13 @@ $result=$mysqli->query($sql);
   <tbody>
     <?
     foreach($result as $row){
-      $sqll = "SELECT * FROM vrach WHERE id_vrach = ".$row['id_vrach']."";
+      $sqll = "SELECT * FROM vrach, users WHERE vrach.id_user = users.id_user and users.id_role = 3";
       $result1=$mysqli->query($sqll);
       $row1 = mysqli_fetch_assoc($result1);
       if ($row['status'] == 'Новая запись') {
         echo'
     <tr>
-      <td>'.$row1['fio_vrach'].'</td>
+      <td>'.$row1['fio'].'</td>
       <td>'.$row['date_zapis'].'</td>
       <td>'.$row['time_zapis'].'</td>
       <td>'.$row['status'].'</td>
@@ -43,7 +43,7 @@ $result=$mysqli->query($sql);
         if(empty($row['otziv'])){
         echo'
     <tr>
-      <td>'.$row1['fio_vrach'].'</td>
+      <td>'.$row1['fio'].'</td>
       <td>'.$row['date_zapis'].'</td>
       <td>'.$row['time_zapis'].'</td>
       <td>'.$row['status'].'</td>
@@ -73,7 +73,7 @@ $result=$mysqli->query($sql);
     elseif(!empty($row['otziv'])){
       echo'
     <tr>
-      <td>'.$row1['fio_vrach'].'</td>
+      <td>'.$row1['fio'].'</td>
       <td>'.$row['date_zapis'].'</td>
       <td>'.$row['time_zapis'].'</td>
       <td>'.$row['status'].'</td>
@@ -84,7 +84,7 @@ $result=$mysqli->query($sql);
       else {
         echo'
     <tr>
-      <td>'.$row1['fio_vrach'].'</td>
+      <td>'.$row1['fio'].'</td>
       <td>'.$row['date_zapis'].'</td>
       <td>'.$row['time_zapis'].'</td>
       <td>'.$row['status'].'</td>
